@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mirrorRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:keepScreenOn="true">
+
+    <!-- Sized dynamically to match the host video aspect ratio with letterboxing -->
+    <SurfaceView
+        android:id="@+id/mirrorSurfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
+
+    <!-- Subtle top status pill -->
+    <TextView
+        android:id="@+id/statusBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="12dp"
+        android:background="#880F172A"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="4dp"
+        android:text="Connecting..."
+        android:textColor="#E2E8F0"
+        android:textSize="12sp" />
+
+    <!-- Floating navigation bar overlay (Back, Home, Recents, Exit) -->
+    <LinearLayout
+        android:id="@+id/navOverlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="#AA0F172A"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="6dp">
+
+        <Button
+            android:id="@+id/btnNavBack"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:minWidth="72dp"
+            android:text="@string/nav_back"
+            android:textAllCaps="false"
+            android:textColor="#F8FAFC"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btnNavHome"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:minWidth="72dp"
+            android:text="@string/nav_home"
+            android:textAllCaps="false"
+            android:textColor="#F8FAFC"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btnNavRecents"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:minWidth="76dp"
+            android:text="@string/nav_recents"
+            android:textAllCaps="false"
+            android:textColor="#F8FAFC"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btnDisconnect"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:minWidth="60dp"
+            android:text="@string/nav_disconnect"
+            android:textAllCaps="false"
+            android:textColor="#F87171"
+            android:textSize="13sp" />
+    </LinearLayout>
+</FrameLayout>

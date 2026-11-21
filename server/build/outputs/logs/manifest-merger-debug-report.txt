@@ -1,0 +1,32 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\server\src\main\AndroidManifest.xml:2:1-5:12
+INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\server\src\main\AndroidManifest.xml:2:1-5:12
+INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\server\src\main\AndroidManifest.xml:2:1-5:12
+INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\server\src\main\AndroidManifest.xml:2:1-5:12
+MERGED from [org.lsposed.hiddenapibypass:hiddenapibypass:6.1] C:\Users\dinet\.gradle\caches\9.3.0\transforms\1082e0fe5d90095cb484d91ea814d30e\workspace\transformed\hiddenapibypass-6.1\AndroidManifest.xml:2:1-7:12
+	package
+		INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\server\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\server\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\server\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\server\src\main\AndroidManifest.xml:2:11-69
+application
+ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\server\src\main\AndroidManifest.xml:4:5-49
+INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\server\src\main\AndroidManifest.xml:4:5-49
+	android:extractNativeLibs
+		INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\server\src\main\AndroidManifest.xml
+	android:label
+		ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\server\src\main\AndroidManifest.xml:4:18-46
+uses-sdk
+INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\server\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\server\src\main\AndroidManifest.xml
+INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\server\src\main\AndroidManifest.xml
+MERGED from [org.lsposed.hiddenapibypass:hiddenapibypass:6.1] C:\Users\dinet\.gradle\caches\9.3.0\transforms\1082e0fe5d90095cb484d91ea814d30e\workspace\transformed\hiddenapibypass-6.1\AndroidManifest.xml:5:5-73
+MERGED from [org.lsposed.hiddenapibypass:hiddenapibypass:6.1] C:\Users\dinet\.gradle\caches\9.3.0\transforms\1082e0fe5d90095cb484d91ea814d30e\workspace\transformed\hiddenapibypass-6.1\AndroidManifest.xml:5:5-73
+	android:targetSdkVersion
+		INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\server\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\server\src\main\AndroidManifest.xml

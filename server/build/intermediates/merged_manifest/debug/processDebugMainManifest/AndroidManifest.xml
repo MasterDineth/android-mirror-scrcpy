@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mirror.server"
+    android:versionCode="1"
+    android:versionName="1.0.0" >
+
+    <uses-sdk
+        android:minSdkVersion="30"
+        android:targetSdkVersion="36" />
+    <!-- Executed headless via app_process as root; no launcher activity required. -->
+    <application
+        android:debuggable="true"
+        android:extractNativeLibs="false"
+        android:label="MirrorServer" />
+
+</manifest>

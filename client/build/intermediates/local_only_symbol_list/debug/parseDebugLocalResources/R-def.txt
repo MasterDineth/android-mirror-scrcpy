@@ -1,0 +1,31 @@
+R_DEF: Internal format may change without notice
+local
+id btnConnect
+id btnDisconnect
+id btnNavBack
+id btnNavHome
+id btnNavRecents
+id editHostIp
+id editPort
+id mirrorRoot
+id mirrorSurfaceView
+id navOverlay
+id spinnerBitrate
+id spinnerFps
+id statusBadge
+layout activity_connect
+layout activity_mirror
+string action_connect
+string app_name
+string connect_subtitle
+string connect_title
+string label_bitrate
+string label_fps
+string label_host_ip
+string label_port
+string nav_back
+string nav_disconnect
+string nav_home
+string nav_recents
+style Theme.MirrorClient
+style Theme.MirrorClient.Fullscreen

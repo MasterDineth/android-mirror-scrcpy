@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.mirror.client-debug-32:/layout_activity_connect.xml.flat",
+        "source": "com.mirror.client-main-34:/layout/activity_connect.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/layout_activity_mirror.xml.flat",
+        "source": "com.mirror.client-main-34:/layout/activity_mirror.xml"
+    }
+]

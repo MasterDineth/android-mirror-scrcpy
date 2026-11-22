@@ -37,6 +37,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.mirror.client.SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MirrorClient.Settings" />
+        <activity
             android:name="com.mirror.client.MirrorActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:exported="false"

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,16 +15,16 @@ import androidx.appcompat.app.AppCompatActivity
 class ConnectActivity : AppCompatActivity() {
 
     private val bitrateOptions = listOf(
-        "4 Mbps" to 4_000_000,
         "8 Mbps" to 8_000_000,
         "12 Mbps (Default)" to 12_000_000,
         "16 Mbps" to 16_000_000,
+        "20 Mbps" to 20_000_000,
         "24 Mbps" to 24_000_000
     )
 
     private val fpsOptions = listOf(
         "30 FPS" to 30,
-        "60 FPS (Default)" to 60,
+        "60 FPS" to 60,
         "90 FPS" to 90,
         "120 FPS" to 120
     )
@@ -33,29 +34,40 @@ class ConnectActivity : AppCompatActivity() {
         setContentView(R.layout.activity_connect)
         requestLocalNetworkPermissionIfNeeded()
 
-        val prefs = getSharedPreferences("mirror_prefs", MODE_PRIVATE)
+        val prefs = MirrorPreferences(this)
         val editHostIp = findViewById<EditText>(R.id.editHostIp)
         val editPort = findViewById<EditText>(R.id.editPort)
         val spinnerBitrate = findViewById<Spinner>(R.id.spinnerBitrate)
         val spinnerFps = findViewById<Spinner>(R.id.spinnerFps)
         val btnConnect = findViewById<Button>(R.id.btnConnect)
+        val btnOpenSettings = findViewById<ImageButton>(R.id.btnOpenSettings)
 
-        editHostIp.setText(prefs.getString("host_ip", Protocol.DEFAULT_HOST))
-        editPort.setText(prefs.getInt("port", Protocol.DEFAULT_PORT).toString())
+        editHostIp.setText(prefs.hostIp)
+        editPort.setText(prefs.port.toString())
 
-        spinnerBitrate.adapter = ArrayAdapter(
+        val bitrateAdapter = ArrayAdapter(
             this,
-            android.R.layout.simple_spinner_dropdown_item,
+            R.layout.spinner_item_dark,
             bitrateOptions.map { it.first }
-        )
-        spinnerBitrate.setSelection(prefs.getInt("bitrate_idx", 2)) // 12 Mbps default
+        ).apply {
+            setDropDownViewResource(R.layout.spinner_dropdown_dark)
+        }
+        spinnerBitrate.adapter = bitrateAdapter
+        spinnerBitrate.setSelection(prefs.bitrateIdx.coerceIn(bitrateOptions.indices))
 
-        spinnerFps.adapter = ArrayAdapter(
+        val fpsAdapter = ArrayAdapter(
             this,
-            android.R.layout.simple_spinner_dropdown_item,
+            R.layout.spinner_item_dark,
             fpsOptions.map { it.first }
-        )
-        spinnerFps.setSelection(prefs.getInt("fps_idx", 1)) // 60 FPS default
+        ).apply {
+            setDropDownViewResource(R.layout.spinner_dropdown_dark)
+        }
+        spinnerFps.adapter = fpsAdapter
+        spinnerFps.setSelection(prefs.fpsIdx.coerceIn(fpsOptions.indices))
+
+        btnOpenSettings.setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
 
         btnConnect.setOnClickListener {
             val host = editHostIp.text.toString().trim()
@@ -68,12 +80,10 @@ class ConnectActivity : AppCompatActivity() {
             val bitrateIdx = spinnerBitrate.selectedItemPosition.coerceIn(bitrateOptions.indices)
             val fpsIdx = spinnerFps.selectedItemPosition.coerceIn(fpsOptions.indices)
 
-            prefs.edit()
-                .putString("host_ip", host)
-                .putInt("port", port)
-                .putInt("bitrate_idx", bitrateIdx)
-                .putInt("fps_idx", fpsIdx)
-                .apply()
+            prefs.hostIp = host
+            prefs.port = port
+            prefs.bitrateIdx = bitrateIdx
+            prefs.fpsIdx = fpsIdx
 
             val intent = Intent(this, MirrorActivity::class.java).apply {
                 putExtra(MirrorActivity.EXTRA_HOST, host)

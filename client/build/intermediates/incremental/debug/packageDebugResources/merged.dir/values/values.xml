@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_connect">Connect</string>
-    <string name="app_name">Mirror Client</string>
+    <string name="app_name">Remote Mirror</string>
     <string name="connect_subtitle">Low-latency H.264 TCP mirroring</string>
     <string name="connect_title">Remote Mirror</string>
-    <string name="label_bitrate">Bitrate</string>
-    <string name="label_fps">Target FPS</string>
-    <string name="label_host_ip">Host IP Address</string>
-    <string name="label_port">TCP Port</string>
-    <string name="nav_back">Back</string>
-    <string name="nav_disconnect">Exit</string>
-    <string name="nav_home">Home</string>
-    <string name="nav_recents">Recents</string>
+    <string name="label_bitrate">BITRATE</string>
+    <string name="label_fps">TARGET FPS</string>
+    <string name="label_host_ip">HOST IP ADDRESS</string>
+    <string name="label_port">TCP PORT</string>
+    <string name="settings_back">Settings</string>
+    <string name="settings_title">Mirror Settings</string>
     <style name="Theme.MirrorClient" parent="Theme.Material3.Dark.NoActionBar">
-        <item name="colorPrimary">#4F9CF9</item>
-        <item name="colorOnPrimary">#0B1220</item>
-        <item name="android:windowBackground">#0F1117</item>
-        <item name="android:statusBarColor">#0F1117</item>
-        <item name="android:navigationBarColor">#0F1117</item>
+        <item name="colorPrimary">#3B82F6</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="android:windowBackground">#080C14</item>
+        <item name="android:statusBarColor">#080C14</item>
+        <item name="android:navigationBarColor">#080C14</item>
     </style>
     <style name="Theme.MirrorClient.Fullscreen" parent="Theme.MirrorClient">
         <item name="android:windowBackground">#000000</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+    </style>
+    <style name="Theme.MirrorClient.Settings" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">#4D8EFF</item>
+        <item name="colorOnPrimary">#002E6A</item>
+        <item name="android:windowBackground">#0C1322</item>
+        <item name="android:statusBarColor">#0C1322</item>
+        <item name="android:navigationBarColor">#0C1322</item>
     </style>
 </resources>

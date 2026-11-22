@@ -1,4 +1,4 @@
-#Sat Nov 21 17:58:56 IST 2026
+#Sat Nov 21 21:09:40 IST 2026
 base.2=C\:\\Users\\dinet\\Documents\\Projects\\android-mirror-scrcpy\\client\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\9\\classes.dex
 path.2=9/classes.dex
 base.1=C\:\\Users\\dinet\\Documents\\Projects\\android-mirror-scrcpy\\client\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex

@@ -27,6 +27,9 @@ object MirrorServerMain {
         val fps: Int = 60
     )
 
+    @Volatile
+    private var activeSession: ActiveSession? = null
+
     @JvmStatic
     fun main(args: Array<String>) {
         // Prepare a Looper on the main thread for Android framework IPC calls
@@ -94,6 +97,7 @@ object MirrorServerMain {
         private var controlThread: Thread? = null
         @Volatile
         private var workerThread: Thread? = null
+        private val streamWriteLock = Any()
 
         fun start() {
             workerThread = Thread({
@@ -126,6 +130,8 @@ object MirrorServerMain {
             inputInjector.displayWidth = dims.width
             inputInjector.displayHeight = dims.height
 
+            val out = DataOutputStream(BufferedOutputStream(socket.getOutputStream(), 128 * 1024))
+
             val ct = Thread({
                 val scratch = ByteArray(Protocol.CONTROL_PACKET_SIZE)
                 try {
@@ -141,6 +147,17 @@ object MirrorServerMain {
                                     newBitrateBps = packet.param,
                                     newFps = packet.normX.toInt()
                                 )
+                            }
+                            Protocol.ACTION_EXPAND_NOTIFICATIONS -> {
+                                inputInjector.expandNotificationShade()
+                            }
+                            Protocol.ACTION_ROTATE_SCREEN -> {
+                                inputInjector.toggleScreenRotation()
+                            }
+                            Protocol.ACTION_PING -> {
+                                synchronized(streamWriteLock) {
+                                    Protocol.writePongPacket(out, packet.param)
+                                }
                             }
                             else -> {
                                 inputInjector.handleTouchPacket(packet)
@@ -163,8 +180,7 @@ object MirrorServerMain {
             controlThread = ct
 
             try {
-                val out = DataOutputStream(BufferedOutputStream(socket.getOutputStream(), 128 * 1024))
-                encoder.streamTo(out)
+                encoder.streamTo(out, streamWriteLock)
             } catch (t: Throwable) {
                 println("[MirrorServer] Video stream ended for $remoteAddr: ${t.message}")
             } finally {
@@ -182,9 +198,6 @@ object MirrorServerMain {
             }
         }
     }
-
-    @Volatile
-    private var activeSession: ActiveSession? = null
 
     private fun parseArgs(args: Array<String>): ServerConfig {
         var port = Protocol.DEFAULT_PORT

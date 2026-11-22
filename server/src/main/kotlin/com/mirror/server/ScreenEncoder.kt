@@ -57,8 +57,9 @@ class ScreenEncoder(
 
     /**
      * Runs the blocking encode-and-stream loop until [stop] is called or the socket closes.
+     * Synchronizes socket writes against [writeLock] so ping/pong echoes never interleave with NAL frames.
      */
-    fun streamTo(out: DataOutputStream) {
+    fun streamTo(out: DataOutputStream, writeLock: Any) {
         running.set(true)
 
         while (running.get()) {
@@ -92,7 +93,7 @@ class ScreenEncoder(
                         "@ ${fps}fps, ${bitrateBps / 1_000_000} Mbps (KEY_LOW_LATENCY=1)"
                 )
 
-                drainEncoderLoop(codec, out)
+                drainEncoderLoop(codec, out, writeLock)
             } finally {
                 activeCodec = null
                 try {
@@ -116,7 +117,7 @@ class ScreenEncoder(
         }
     }
 
-    private fun drainEncoderLoop(codec: MediaCodec, out: DataOutputStream) {
+    private fun drainEncoderLoop(codec: MediaCodec, out: DataOutputStream, writeLock: Any) {
         val bufferInfo = MediaCodec.BufferInfo()
         var scratch = ByteArray(256 * 1024)
 
@@ -142,7 +143,9 @@ class ScreenEncoder(
                             bufferInfo.presentationTimeUs
                         }
 
-                        Protocol.writeVideoPacket(out, pts, scratch, 0, size)
+                        synchronized(writeLock) {
+                            Protocol.writeVideoPacket(out, pts, scratch, 0, size)
+                        }
                     }
                     codec.releaseOutputBuffer(outputIndex, false)
                 }

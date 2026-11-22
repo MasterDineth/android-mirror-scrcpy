@@ -7,12 +7,14 @@ import android.view.InputEvent
 import android.view.KeyCharacterMap
 import android.view.KeyEvent
 import android.view.MotionEvent
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.lang.reflect.Method
 
 /**
- * Reconstructs multi-touch MotionEvents and navigation KeyEvents from 14-byte binary
+ * Reconstructs multi-touch MotionEvents and device KeyEvents from 14-byte binary
  * control packets and injects them into the Android system via InputManagerGlobal
- * (Android 14–16) or InputManager (fallback).
+ * (Android 14–17) or InputManager (fallback).
  */
 class InputInjector(
     @Volatile var displayWidth: Int,
@@ -148,7 +150,7 @@ class InputInjector(
     }
 
     /**
-     * Injects a full key press (ACTION_DOWN followed by ACTION_UP) for Back, Home, or Recents.
+     * Injects a full key press (ACTION_DOWN followed by ACTION_UP) for Power, Volume, Back, Home, or Recents.
      */
     @Synchronized
     fun injectKeyPress(keyCode: Int) {
@@ -179,6 +181,39 @@ class InputInjector(
         )
         injectEvent(downEvent)
         injectEvent(upEvent)
+    }
+
+    /**
+     * Pulls down the host notification shade using Android's statusbar shell command.
+     */
+    fun expandNotificationShade() {
+        try {
+            val exitCode = Runtime.getRuntime()
+                .exec(arrayOf("cmd", "statusbar", "expand-notifications"))
+                .waitFor()
+            if (exitCode != 0) {
+                Runtime.getRuntime().exec(arrayOf("service", "call", "statusbar", "1")).waitFor()
+            }
+        } catch (t: Throwable) {
+            System.err.println("[InputInjector] expandNotificationShade failed: ${t.message}")
+        }
+    }
+
+    /**
+     * Toggles host orientation between portrait (0) and landscape (1) via system settings.
+     */
+    fun toggleScreenRotation() {
+        try {
+            val proc = Runtime.getRuntime().exec(arrayOf("settings", "get", "system", "user_rotation"))
+            val current = BufferedReader(InputStreamReader(proc.inputStream)).readLine()?.trim()?.toIntOrNull() ?: 0
+            proc.waitFor()
+            val next = if (current == 0 || current == 2) 1 else 0
+            Runtime.getRuntime().exec(arrayOf("settings", "put", "system", "accelerometer_rotation", "0")).waitFor()
+            Runtime.getRuntime().exec(arrayOf("settings", "put", "system", "user_rotation", next.toString())).waitFor()
+            println("[InputInjector] Toggled user_rotation from $current -> $next")
+        } catch (t: Throwable) {
+            System.err.println("[InputInjector] toggleScreenRotation failed: ${t.message}")
+        }
     }
 
     @Synchronized

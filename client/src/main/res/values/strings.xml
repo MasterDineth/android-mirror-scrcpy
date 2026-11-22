@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Mirror Client</string>
+    <string name="app_name">Remote Mirror</string>
     <string name="connect_title">Remote Mirror</string>
     <string name="connect_subtitle">Low-latency H.264 TCP mirroring</string>
-    <string name="label_host_ip">Host IP Address</string>
-    <string name="label_port">TCP Port</string>
-    <string name="label_bitrate">Bitrate</string>
-    <string name="label_fps">Target FPS</string>
+    <string name="label_host_ip">HOST IP ADDRESS</string>
+    <string name="label_port">TCP PORT</string>
+    <string name="label_bitrate">BITRATE</string>
+    <string name="label_fps">TARGET FPS</string>
     <string name="action_connect">Connect</string>
-    <string name="nav_back">Back</string>
-    <string name="nav_home">Home</string>
-    <string name="nav_recents">Recents</string>
-    <string name="nav_disconnect">Exit</string>
+    <string name="settings_title">Mirror Settings</string>
+    <string name="settings_back">Settings</string>
 </resources>

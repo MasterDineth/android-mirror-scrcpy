@@ -1,10 +1,142 @@
 [
     {
-        "merged": "com.mirror.client-debug-32:/layout_activity_connect.xml.flat",
-        "source": "com.mirror.client-main-34:/layout/activity_connect.xml"
+        "merged": "com.mirror.client-debug-32:/layout_spinner_dropdown_dark.xml.flat",
+        "source": "com.mirror.client-main-34:/layout/spinner_dropdown_dark.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_bg_segment_active.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/bg_segment_active.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_ic_volume_down.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/ic_volume_down.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_ic_power.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/ic_power.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_bg_settings_inset.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/bg_settings_inset.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_bg_circle_primary.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/bg_circle_primary.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_bg_segment_track.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/bg_segment_track.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_ic_add.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/ic_add.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_bg_settings_card.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/bg_settings_card.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_bg_icon_btn_card.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/bg_icon_btn_card.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_ic_chevron_up.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/ic_chevron_up.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_ic_check.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/ic_check.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_ic_screenshot.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/ic_screenshot.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_ic_rotate.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/ic_rotate.xml"
+    },
+    {
+        "merged": "C:\\Users\\dinet\\.gradle\\daemon\\9.3.0\\com.mirror.client-debug-32:\\layout_activity_mirror.xml.flat",
+        "source": "C:\\Users\\dinet\\.gradle\\daemon\\9.3.0\\com.mirror.client-main-34:\\layout\\activity_mirror.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_ic_back_ios.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/ic_back_ios.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_bg_preview_screen.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/bg_preview_screen.xml"
     },
     {
         "merged": "com.mirror.client-debug-32:/layout_activity_mirror.xml.flat",
         "source": "com.mirror.client-main-34:/layout/activity_mirror.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_bg_hud_pill.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/bg_hud_pill.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/layout_activity_settings.xml.flat",
+        "source": "com.mirror.client-main-34:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_bg_fab_toggle.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/bg_fab_toggle.xml"
+    },
+    {
+        "merged": "C:\\Users\\dinet\\.gradle\\daemon\\9.3.0\\com.mirror.client-debug-32:\\layout_activity_connect.xml.flat",
+        "source": "C:\\Users\\dinet\\.gradle\\daemon\\9.3.0\\com.mirror.client-main-34:\\layout\\activity_connect.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_ic_arrow_back.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/ic_arrow_back.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_ic_settings.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/ic_settings.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_bg_connect_cta.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/bg_connect_cta.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/layout_activity_connect.xml.flat",
+        "source": "com.mirror.client-main-34:/layout/activity_connect.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_bg_settings_chip_active.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/bg_settings_chip_active.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_ic_volume_up.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/ic_volume_up.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/layout_spinner_item_dark.xml.flat",
+        "source": "com.mirror.client-main-34:/layout/spinner_item_dark.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_bg_toolbox_item_ripple.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/bg_toolbox_item_ripple.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_bg_hud_circle.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/bg_hud_circle.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_bg_circle_inactive.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/bg_circle_inactive.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_bg_toolbox_dock.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/bg_toolbox_dock.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_ic_shade.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/ic_shade.xml"
+    },
+    {
+        "merged": "com.mirror.client-debug-32:/drawable_bg_connect_field.xml.flat",
+        "source": "com.mirror.client-main-34:/drawable/bg_connect_field.xml"
     }
 ]

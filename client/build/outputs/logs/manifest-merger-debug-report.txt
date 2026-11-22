@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:2:1-31:12
+ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:2:1-36:12
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\dinet\.gradle\caches\9.3.0\transforms\bc5a524a25a2a9b98223001e9ae8a8ac\workspace\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\dinet\.gradle\caches\9.3.0\transforms\65d7eccec1b673375430862857a29ecb\workspace\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\dinet\.gradle\caches\9.3.0\transforms\bd9a9b82d45ed16b543b4426b0043d93\workspace\transformed\constraintlayout-2.0.1\AndroidManifest.xml:2:1-11:12
@@ -66,8 +66,8 @@ ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\ma
 	android:name
 		ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:6:22-76
 application
-ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:8:5-30:19
-INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:8:5-30:19
+ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:8:5-35:19
+INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:8:5-35:19
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\dinet\.gradle\caches\9.3.0\transforms\bc5a524a25a2a9b98223001e9ae8a8ac\workspace\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\dinet\.gradle\caches\9.3.0\transforms\bc5a524a25a2a9b98223001e9ae8a8ac\workspace\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\dinet\.gradle\caches\9.3.0\transforms\bd9a9b82d45ed16b543b4426b0043d93\workspace\transformed\constraintlayout-2.0.1\AndroidManifest.xml:9:5-20
@@ -114,16 +114,24 @@ category#android.intent.category.LAUNCHER
 ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:20:17-77
 	android:name
 		ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:20:27-74
-activity#com.mirror.client.MirrorActivity
-ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:24:9-28:68
+activity#com.mirror.client.SettingsActivity
+ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:24:9-27:66
 	android:exported
-		ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:27:13-37
-	android:configChanges
-		ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:26:13-87
+		ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:26:13-37
 	android:theme
-		ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:28:13-65
+		ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:27:13-63
 	android:name
-		ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:25:13-43
+		ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:25:13-45
+activity#com.mirror.client.MirrorActivity
+ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:29:9-33:68
+	android:exported
+		ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:32:13-37
+	android:configChanges
+		ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:31:13-87
+	android:theme
+		ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:33:13-65
+	android:name
+		ADDED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml:30:13-43
 uses-sdk
 INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\dinet\Documents\Projects\android-mirror-scrcpy\client\src\main\AndroidManifest.xml

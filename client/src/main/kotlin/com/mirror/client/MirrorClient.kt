@@ -1,5 +1,6 @@
 package com.mirror.client
 
+import android.os.SystemClock
 import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -7,6 +8,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import java.io.BufferedInputStream
@@ -14,11 +16,16 @@ import java.io.DataInputStream
 import java.io.EOFException
 import java.net.InetSocketAddress
 import java.net.Socket
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * Coroutines-based TCP client with TCP_NODELAY enabled.
- * Reads 12-byte-header H.264 NAL packets and writes 14-byte binary touch/control packets concurrently.
+ * Reads 12-byte-header H.264 NAL packets and pong echoes, measures live throughput & RTT,
+ * and writes 14-byte binary touch/control packets concurrently.
  */
 class MirrorClient(
     private val host: String,
@@ -27,11 +34,16 @@ class MirrorClient(
     private val fps: Int,
     private val decoder: VideoDecoder,
     private val onConnected: () -> Unit,
-    private val onDisconnected: (reason: String) -> Unit
+    private val onDisconnected: (reason: String) -> Unit,
+    private val onThroughputSample: (bytesPerSec: Long) -> Unit = {},
+    private val onPingMeasured: (rttMs: Int) -> Unit = {}
 ) {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private val outgoingQueue = Channel<ByteArray>(capacity = 256)
     private val explicitlyDisconnected = AtomicBoolean(false)
+
+    private val pingSeq = AtomicInteger(1)
+    private val pendingPings = ConcurrentHashMap<Int, Long>()
 
     @Volatile
     private var socket: Socket? = null
@@ -63,7 +75,7 @@ class MirrorClient(
                         tcpSocket = null
                         if (attempt < 3 && isActive && !explicitlyDisconnected.get()) {
                             Log.w("MirrorClient", "Attempt $attempt failed (${t.message}), retrying in 300ms...")
-                            kotlinx.coroutines.delay(300)
+                            delay(300)
                         }
                     }
                 }
@@ -94,9 +106,32 @@ class MirrorClient(
                     }
                 }
 
+                // Periodic ping job for real roundtrip latency telemetry
+                val pingJob = launch {
+                    delay(500L)
+                    while (isActive && !activeSocket.isClosed) {
+                        val token = pingSeq.getAndIncrement()
+                        pendingPings[token] = SystemClock.elapsedRealtime()
+                        if (pendingPings.size > 16) {
+                            pendingPings.clear()
+                            pendingPings[token] = SystemClock.elapsedRealtime()
+                        }
+                        outgoingQueue.trySend(
+                            Protocol.encodeControlPacket(
+                                action = Protocol.ACTION_PING,
+                                param = token,
+                                normX = 0f,
+                                normY = 0f
+                            )
+                        )
+                        delay(2_000L)
+                    }
+                }
+
                 try {
                     readVideoStreamLoop(activeSocket)
                 } finally {
+                    pingJob.cancel()
                     writerJob.cancel()
                 }
                 if (!explicitlyDisconnected.get()) {
@@ -126,6 +161,8 @@ class MirrorClient(
     private fun readVideoStreamLoop(tcpSocket: Socket) {
         val input = DataInputStream(BufferedInputStream(tcpSocket.getInputStream(), 256 * 1024))
         var payloadBuffer = ByteArray(256 * 1024)
+        var bytesInWindow = 0L
+        var windowStartMs = SystemClock.elapsedRealtime()
 
         while (scope.isActive && !tcpSocket.isClosed) {
             val ptsUs = input.readLong()
@@ -137,6 +174,27 @@ class MirrorClient(
                 payloadBuffer = ByteArray(length)
             }
             input.readFully(payloadBuffer, 0, length)
+
+            if (ptsUs == Protocol.PTS_PONG && length == 4) {
+                val token = ByteBuffer.wrap(payloadBuffer, 0, 4).order(ByteOrder.BIG_ENDIAN).int
+                val sentAt = pendingPings.remove(token)
+                if (sentAt != null) {
+                    val rtt = (SystemClock.elapsedRealtime() - sentAt).toInt().coerceAtLeast(1)
+                    onPingMeasured(rtt)
+                }
+                continue
+            }
+
+            bytesInWindow += (Protocol.VIDEO_HEADER_SIZE + length)
+            val now = SystemClock.elapsedRealtime()
+            val elapsed = now - windowStartMs
+            if (elapsed >= 1000L) {
+                val bps = (bytesInWindow * 1000L) / elapsed
+                onThroughputSample(bps)
+                bytesInWindow = 0L
+                windowStartMs = now
+            }
+
             decoder.feedNalUnit(ptsUs, payloadBuffer, length)
         }
     }
@@ -154,6 +212,18 @@ class MirrorClient(
             normY = 0f
         )
         outgoingQueue.trySend(packet)
+    }
+
+    fun sendExpandNotifications() {
+        outgoingQueue.trySend(
+            Protocol.encodeControlPacket(Protocol.ACTION_EXPAND_NOTIFICATIONS, 0, 0f, 0f)
+        )
+    }
+
+    fun sendRotateScreen() {
+        outgoingQueue.trySend(
+            Protocol.encodeControlPacket(Protocol.ACTION_ROTATE_SCREEN, 0, 0f, 0f)
+        )
     }
 
     fun disconnect() {

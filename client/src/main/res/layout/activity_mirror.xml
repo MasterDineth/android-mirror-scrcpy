@@ -3,8 +3,7 @@
     android:id="@+id/mirrorRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
-    android:keepScreenOn="true">
+    android:background="#000000">
 
     <!-- Sized dynamically to match the host video aspect ratio with letterboxing -->
     <SurfaceView
@@ -13,75 +12,75 @@
         android:layout_height="match_parent"
         android:layout_gravity="center" />
 
-    <!-- Subtle top status pill -->
-    <TextView
-        android:id="@+id/statusBadge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|center_horizontal"
-        android:layout_marginTop="12dp"
-        android:background="#880F172A"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="4dp"
-        android:text="Connecting..."
-        android:textColor="#E2E8F0"
-        android:textSize="12sp" />
-
-    <!-- Floating navigation bar overlay (Back, Home, Recents, Exit) -->
+    <!-- Adjustable Top Real-Time Stats HUD -->
     <LinearLayout
-        android:id="@+id/navOverlay"
+        android:id="@+id/hudContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:gravity="start|center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="18dp">
+
+        <TextView
+            android:id="@+id/hudBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_hud_circle"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:minWidth="40dp"
+            android:minHeight="40dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="6dp"
+            android:text="--"
+            android:textColor="#F4F4F5"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Floating Quick Toolbox (FAB + Expandable Glass Dock) -->
+    <LinearLayout
+        android:id="@+id/fabWrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="16dp"
-        android:background="#AA0F172A"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="8dp"
-        android:paddingVertical="6dp">
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnNavBack"
-            style="?android:attr/borderlessButtonStyle"
+        <!-- Expandable frosted-glass toolbox dock populated from active settings -->
+        <LinearLayout
+            android:id="@+id/toolboxDock"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:minWidth="72dp"
-            android:text="@string/nav_back"
-            android:textAllCaps="false"
-            android:textColor="#F8FAFC"
-            android:textSize="13sp" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_toolbox_dock"
+            android:elevation="12dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="8dp"
+            android:visibility="gone" />
 
-        <Button
-            android:id="@+id/btnNavHome"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:minWidth="72dp"
-            android:text="@string/nav_home"
-            android:textAllCaps="false"
-            android:textColor="#F8FAFC"
-            android:textSize="13sp" />
+        <!-- Sleek circular glass FAB toggle button (draggable when enabled) -->
+        <FrameLayout
+            android:id="@+id/fabToggleBtn"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_fab_toggle"
+            android:clickable="true"
+            android:contentDescription="Toggle Remote Toolbox"
+            android:elevation="12dp"
+            android:focusable="true">
 
-        <Button
-            android:id="@+id/btnNavRecents"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:minWidth="76dp"
-            android:text="@string/nav_recents"
-            android:textAllCaps="false"
-            android:textColor="#F8FAFC"
-            android:textSize="13sp" />
-
-        <Button
-            android:id="@+id/btnDisconnect"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:minWidth="60dp"
-            android:text="@string/nav_disconnect"
-            android:textAllCaps="false"
-            android:textColor="#F87171"
-            android:textSize="13sp" />
+            <ImageView
+                android:id="@+id/fabChevronIcon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_chevron_up" />
+        </FrameLayout>
     </LinearLayout>
 </FrameLayout>

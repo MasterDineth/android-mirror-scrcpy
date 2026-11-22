@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0F1117"
+    android:background="#080C14"
     android:fillViewport="true">
 
     <LinearLayout
@@ -10,130 +10,193 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="32dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/connect_title"
-            android:textColor="#F8FAFC"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="28dp"
-            android:text="@string/connect_subtitle"
-            android:textColor="#94A3B8"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_host_ip"
-            android:textColor="#CBD5E1"
-            android:textSize="13sp" />
-
-        <EditText
-            android:id="@+id/editHostIp"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="6dp"
-            android:background="#1E2433"
-            android:hint="192.168.31.109"
-            android:inputType="textNoSuggestions"
-            android:paddingHorizontal="14dp"
-            android:singleLine="true"
-            android:text="192.168.31.109"
-            android:textColor="#F8FAFC"
-            android:textColorHint="#64748B" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/label_port"
-            android:textColor="#CBD5E1"
-            android:textSize="13sp" />
-
-        <EditText
-            android:id="@+id/editPort"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="6dp"
-            android:background="#1E2433"
-            android:hint="27183"
-            android:inputType="number"
-            android:paddingHorizontal="14dp"
-            android:singleLine="true"
-            android:text="27183"
-            android:textColor="#F8FAFC"
-            android:textColorHint="#64748B" />
-
+        <!-- Title & Settings Gear Header -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:gravity="top"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_bitrate"
-                    android:textColor="#CBD5E1"
-                    android:textSize="13sp" />
+                    android:letterSpacing="-0.02"
+                    android:text="@string/connect_title"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
 
-                <Spinner
-                    android:id="@+id/spinnerBitrate"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:background="#1E2433"
-                    android:paddingHorizontal="10dp" />
+                    android:text="@string/connect_subtitle"
+                    android:textColor="#94A3B8"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btnOpenSettings"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_icon_btn_card"
+                android:contentDescription="@string/settings_title"
+                android:padding="10dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_settings" />
+        </LinearLayout>
+
+        <!-- Host IP Address -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:letterSpacing="0.08"
+            android:text="@string/label_host_ip"
+            android:textColor="#94A3B8"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editHostIp"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_connect_field"
+            android:fontFamily="monospace"
+            android:hint="192.168.x.x"
+            android:inputType="textNoSuggestions"
+            android:paddingHorizontal="16dp"
+            android:singleLine="true"
+            android:text="192.168.31.109"
+            android:textColor="#F1F5F9"
+            android:textColorHint="#64748B"
+            android:textSize="16sp" />
+
+        <!-- TCP Port -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="20dp"
+            android:letterSpacing="0.08"
+            android:text="@string/label_port"
+            android:textColor="#94A3B8"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editPort"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_connect_field"
+            android:fontFamily="monospace"
+            android:hint="27183"
+            android:inputType="number"
+            android:paddingHorizontal="16dp"
+            android:singleLine="true"
+            android:text="27183"
+            android:textColor="#F1F5F9"
+            android:textColorHint="#64748B"
+            android:textSize="16sp" />
+
+        <!-- Bitrate & Target FPS 2-Column Grid -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="7dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:letterSpacing="0.08"
+                    android:text="@string/label_bitrate"
+                    android:textColor="#94A3B8"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_connect_field">
+
+                    <Spinner
+                        android:id="@+id/spinnerBitrate"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="#64748B"
+                        android:popupBackground="#131B2B" />
+                </FrameLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="7dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:letterSpacing="0.08"
                     android:text="@string/label_fps"
-                    android:textColor="#CBD5E1"
-                    android:textSize="13sp" />
+                    android:textColor="#94A3B8"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
 
-                <Spinner
-                    android:id="@+id/spinnerFps"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="6dp"
-                    android:background="#1E2433"
-                    android:paddingHorizontal="10dp" />
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_connect_field">
+
+                    <Spinner
+                        android:id="@+id/spinnerFps"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="#64748B"
+                        android:popupBackground="#131B2B" />
+                </FrameLayout>
             </LinearLayout>
         </LinearLayout>
 
+        <!-- Electric Blue Gradient Connect CTA -->
         <Button
             android:id="@+id/btnConnect"
             android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginTop="28dp"
-            android:backgroundTint="#4F9CF9"
+            android:layout_height="56dp"
+            android:layout_marginTop="34dp"
+            android:background="@drawable/bg_connect_cta"
+            android:backgroundTint="@null"
+            android:elevation="8dp"
+            android:letterSpacing="0.02"
+            android:stateListAnimator="@null"
             android:text="@string/action_connect"
             android:textAllCaps="false"
-            android:textColor="#0B1220"
+            android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
